@@ -5,16 +5,18 @@ const uuid = require('uuid')
 class UsuarioService {
 
     async cadastrarUsuario(dto) {
-            const usuario = await database.usuario.findOne({where: {
+            const usuario = await database.usuarios.findOne({where: {
                 email: dto.email
             }})
+
             if(usuario){
                 throw new Error('Usuario já cadastrado')
             }
+            
             try {
                 const senhaHash = await hash(dto.senha, 8)
                 
-                const novoUsuario = await database.usuario.create({
+                const novoUsuario = await database.usuarios.create({
 
                     id: uuid.v4(),
                     nome: dto.nome,
