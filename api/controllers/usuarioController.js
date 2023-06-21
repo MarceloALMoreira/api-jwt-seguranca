@@ -15,7 +15,11 @@ class UsuarioController {
         } catch (error) {
             res.status(400).send({message: error.message})
         }
+    }
 
+    static async buscaTodosUsuarios(req, res) {
+        const usuarios = await usuarioService.buscaTodosUsuarios()
+        res.status(200).json(usuarios)
     }
 }
 

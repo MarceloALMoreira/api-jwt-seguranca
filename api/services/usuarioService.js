@@ -30,6 +30,11 @@ class UsuarioService {
             }
     }
 
+    async buscaTodosUsuarios(){
+        const usuarios = await database.usuarios.findAll()
+        return usuarios
+    }
+
 }
 
 
