@@ -14,6 +14,7 @@ class AuthService {
             where: {
                 email: dto.email
             }
+            // aqui o filtro where, vai ver se o email existe no banco
         })
 
         // vamos verificar se nosso usuario está cadastrado! mais vamos usar uma nota de negação '!'
@@ -23,7 +24,7 @@ class AuthService {
 
         /* aqui vamos usar o compare do bcryptjs para 
          comparar se a senha que estamos recendo do controller é igual a senha cadastrada no banco*/
-        const senhaIguais = compare(dto.senha, usuario.senha)
+        const senhaIguais = await compare(dto.senha, usuario.senha)
 
 
         // aqui vamos usar uma nota de negação que vai entra na condição caso seja false
