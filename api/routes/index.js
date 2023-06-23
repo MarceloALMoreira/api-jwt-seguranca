@@ -8,8 +8,8 @@ const auth = require('./authRoute')
 module.exports = app => {
    app.use(
     bodyParser.json(),
+    auth, // aqui eu vou garantir que minha routa auth seja publica!
     produto,
-    usuario,
-    auth
+    usuario
    )
 }
