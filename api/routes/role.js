@@ -1,16 +1,16 @@
 // Criação do crud
 
 const { Router } = require('express')
+const RoleController = require('../controllers/roleController')
 
-const RoleControler = require('../controllers/roleController')
 
 const router = Router()
 
 router
-    .post('/roles', RoleControler.cadastrar)
-    .get('/role')
-    .post('/role/:id')
-    .delete('/role/:id')
-    .put('/role/:id')
-    
+    .post('/roles', RoleController.cadastrar)
+    .get('/roles', RoleController.buscarTodasRoles)
+    .post('/roles/:id', RoleController.buscarRolePorId)
+    .delete('/roles/:id', RoleController.deletarRolePorId)
+    .put('/roles/:id', RoleController.editarRole)
+
 module.exports = router

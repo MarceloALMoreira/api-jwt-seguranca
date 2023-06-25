@@ -2,6 +2,7 @@ const database = require('../models')
 const uuid = require('uuid')
 
 class RoleService {
+
     async cadastrar(dto) {
         const role = await database.roles.findOne({
             where: {
@@ -25,6 +26,67 @@ class RoleService {
 
         }
     }
+
+    async buscarTodasRoles() {
+        const roles = await database.roles.findAll()
+        return roles
+
+    }
+
+    async buscarRolePorId(id) {
+        const role = await database.roles.findOne({
+            where: {
+                id: id
+            }
+        })
+        if (!role) {
+            throw new Error('Role informada não cadastrada!')
+        }
+        return role
+    }
+
+    async deletarRolePorId(id) {
+        const role = await database.roles.findOne({
+            where: {
+                id: id
+            }
+        })
+        if (!role) {
+            throw new Erro('Role informada não cadastrada!')
+        }
+
+        try {
+            await database.roles.destroy({
+                where: {
+                    id: id
+                }
+            })
+        } catch (error) {
+            throw new Error({ mesage: error.mesage })
+        }
+    }
+
+    async editarRole(dto) {
+        const role = await database.roles.findOne({
+            where: {
+                id: dto.id
+            }
+        })
+        if (!role) {
+            throw new Error('Role informada mão cadastrada!')
+        }
+
+        try {
+            role.nome = dto.nome,
+            role.descricao = dto.descricao,
+            await role.save()
+            return await role.reload()
+        } catch (error) {
+            console.error('Mesasage error: ', error.message)
+            throw error
+        }
+    }
+
 }
 
 module.exports = RoleService

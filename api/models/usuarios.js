@@ -4,8 +4,20 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class usuarios extends Model {
- 
+
     static associate(models) {
+      usuarios.belongsToMany(models.roles, {
+        through: models.usuarios_roles,
+        // as: 'usuarios_roles',
+        foreignKey: 'usuario_id'
+      })
+
+      usuarios.belongsToMany(models.permissoes, {
+        through: models.usuarios_permissoes,
+        // as: 'usuarios_permissoes',
+        foreignKey: 'usuario_id'
+
+      })
     }
   }
   usuarios.init({
