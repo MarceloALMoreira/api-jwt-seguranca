@@ -24,7 +24,9 @@ class PermissaoService {
         }
     }
 
-    async buscarPermissao(){
+    async buscarTodasPermissoes() {
+        const permissoes = await database.permissoes.findAll()
+        return permissoes
     }
 }
 

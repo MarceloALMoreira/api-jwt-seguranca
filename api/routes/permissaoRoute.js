@@ -5,7 +5,7 @@ const router = Router()
 
 router
     .post('/permissao', PermissaoController.cadastrarPermissao)
-    .get('/permissao')
+    .get('/permissao', PermissaoController.buscarTodasPermissoes)
     .get('/permissao/:id')
     .delete('/permissao/:id')
     .put('/permissao/:id')

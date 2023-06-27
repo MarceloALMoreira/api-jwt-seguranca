@@ -13,6 +13,17 @@ class PermissaoController {
             res.status(400).send({message: error.message})
         }
     }
+
+    static async buscarTodasPermissoes(req, res) {
+
+        try {
+      const permissoes = await permisaoService.buscarTodasPermissoes()
+        res.status(200).json(permissoes)
+            
+        } catch (error) {
+            res.status(400).send({message: error.message})
+        }
+    }
     
 }
 module.exports = PermissaoController
