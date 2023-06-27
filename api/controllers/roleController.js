@@ -1,14 +1,13 @@
 const RoleService = require('../services/roleService')
 const roleService = new RoleService()
 
+
 class RoleController {
 
     static async cadastrar(req, res) {
         const { nome, descricao } = req.body
-
         try {
             const role = await roleService.cadastrar({ nome, descricao })
-
             res.status(201).send(role)
         } catch (error) {
             res.status(400).send({ message: error.message })
@@ -20,7 +19,7 @@ class RoleController {
         res.status(200).json(roles)
     }
 
-    static async buscarRolePorId(req, res) {
+    static async buscarRolePorId(req, res) {      
         try {
             const { id } = req.params
             const role = await roleService.buscarRolePorId(id)
@@ -40,13 +39,11 @@ class RoleController {
             console.log('Message error: ', error.message)
             res.status(400).send({ message: error.message })
         }
-
     }
 
     static async editarRole(req, res) {
         const { id } = req.params
         const { nome, descricao } = req.body
-
         try {
             const role = await roleService.editarRole({ id, nome, descricao })
             res.status(200).json(role)
@@ -55,7 +52,5 @@ class RoleController {
             res.status(400).send({ message: error.message })
         }
     }
-
 }
-
 module.exports = RoleController

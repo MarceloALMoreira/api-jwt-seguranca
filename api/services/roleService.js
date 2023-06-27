@@ -2,7 +2,6 @@ const database = require('../models')
 const uuid = require('uuid')
 
 class RoleService {
-
     async cadastrar(dto) {
         const role = await database.roles.findOne({
             where: {
@@ -10,9 +9,8 @@ class RoleService {
             }
         })
         if (role) {
-            throw new Error('Role já cadastrada!')
+            throw new Error('Role já cadastrada')
         }
-
         try {
             const newRole = await database.roles.create({
                 id: uuid.v4(),
@@ -20,21 +18,18 @@ class RoleService {
                 descricao: dto.descricao
             })
             return newRole
-
         } catch (error) {
-            throw new Error('Erro ao cadastrar role!')
-
+            throw new Error('Erro ao cadastrar role')
         }
     }
 
     async buscarTodasRoles() {
         const roles = await database.roles.findAll()
         return roles
-
     }
 
     async buscarRolePorId(id) {
-        const role = await database.roles.findOne({
+        const role = await database.roles.findOne({         
             where: {
                 id: id
             }
@@ -52,9 +47,8 @@ class RoleService {
             }
         })
         if (!role) {
-            throw new Erro('Role informada não cadastrada!')
+            throw new Error('Role informada não cadastrada!')
         }
-
         try {
             await database.roles.destroy({
                 where: {
@@ -62,7 +56,8 @@ class RoleService {
                 }
             })
         } catch (error) {
-            throw new Error({ mesage: error.mesage })
+            console.error('Message error: ', error.message)
+            throw error
         }
     }
 
@@ -73,20 +68,18 @@ class RoleService {
             }
         })
         if (!role) {
-            throw new Error('Role informada mão cadastrada!')
+            throw new Error('Role informada não cadastrada!')
         }
-
         try {
             role.nome = dto.nome,
-            role.descricao = dto.descricao,
+            role.descricao = dto.descricao
             await role.save()
             return await role.reload()
         } catch (error) {
-            console.error('Mesasage error: ', error.message)
+            console.error('Message error: ', error.message)
             throw error
         }
     }
-
+    
 }
-
 module.exports = RoleService
