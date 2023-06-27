@@ -3,9 +3,9 @@ const SegurancaController = require('../controllers/segurancaController')
 
 const router = Router()
 
-// aqui vai cadastrar o usuario
+// aqui vai pefil dos nossos usuarios cadastrar o usuario
 router
-    .post('/segunraca/acl',SegurancaController.cadastrarAcl)
+    .post('/seguranca/acl',SegurancaController.cadastrarAcl)
     .post('/seguranca/permissoes-roles', SegurancaController.cadastrarPermissoesRoles)
 
 module.exports = router

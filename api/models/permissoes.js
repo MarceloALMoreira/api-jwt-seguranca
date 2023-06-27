@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       permissoes.belongsToMany(models.usuarios,{
         through: models.usuarios_permissoes,
-        as: 'permissoes_do_usuarios',
+        as: 'permissoes_do_usuario',
         foreignKey: 'permissao_id'
       })
       permissoes.belongsToMany(models.roles,{
@@ -16,8 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'permissoes_das_roles',
         foreignKey: 'permissao_id'
       })
-      
-      
     }
   }
   permissoes.init({

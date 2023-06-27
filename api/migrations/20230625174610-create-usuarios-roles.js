@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      usuarios_id: {
+      usuario_id: {
         type: Sequelize.UUID,
         references: {
           model: 'usuarios',
