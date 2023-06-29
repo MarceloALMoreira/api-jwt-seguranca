@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   usuarios_roles.init({
-    usuarios_id: DataTypes.UUID,
+    usuario_id: DataTypes.UUID,
     role_id: DataTypes.UUID
   }, {
     sequelize,

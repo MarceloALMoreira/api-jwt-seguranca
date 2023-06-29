@@ -6,8 +6,6 @@ class SegurancaController {
         const { roles, permissoes } = req.body
         const { usuarioId } = req
 
-        console.log(roles, permissoes, usuarioId)
-        
         try {
             const acl = await segurancaService.cadastrarAcl({ roles, permissoes, usuarioId})
 
